@@ -40,12 +40,12 @@ let track_list = [
 
 function random_bg_color() {
 
-  // Get a number between 64 to 256 (for getting lighter colors)
-  let red = Math.floor(Math.random() * 256) + 64;
-  let green = Math.floor(Math.random() * 256) + 64;
-  let blue = Math.floor(Math.random() * 256) + 64;
+  // Get a number between 75 to 256 (for getting lighter colors)
+  let red = Math.floor(Math.random() * 256) + 75;
+  let green = Math.floor(Math.random() * 256) + 75;
+  let blue = Math.floor(Math.random() * 256) + 75;
 
-  // Construct a color withe the given values
+  // Construct a color with the given values
   let bgColor = "rgb(" + red + "," + green + "," + blue + ")";
 
   // Set the background to that color
@@ -57,12 +57,11 @@ function loadTrack(track_index) {
   resetValues();
   curr_track.src = track_list[track_index].path;
   curr_track.load();
-
+  track_art.style.webkitAnimationPlayState = "running";
   track_art.style.backgroundImage = "url(" + track_list[track_index].image + ")";
   track_name.textContent = track_list[track_index].name;
   track_artist.textContent = track_list[track_index].artist;
   now_playing.textContent = "PLAYING " + (track_index + 1) + " OF " + track_list.length;
-
   updateTimer = setInterval(seekUpdate, 1000);
   curr_track.addEventListener("ended", nextTrack);
   random_bg_color();
@@ -78,23 +77,25 @@ function resetValues() {
 loadTrack(track_index);
 
 function playpauseTrack() {
-  if (!isPlaying) playTrack();
-  else pauseTrack();
+  if (!isPlaying) {
+    playTrack();
+    track_art.style.webkitAnimationPlayState = "running";
+      } else {
+  pauseTrack();
+  track_art.style.webkitAnimationPlayState = "paused";
+}
 }
 
-//I want play button to change to pause too
 function playTrack() {
   curr_track.play();
   isPlaying = true;
-  //track-art.classList.toggle('play'); Check why doesn't work
   playpause_btn.innerHTML = '<i class="fa fa-pause-circle fa-5x"></i>';
 }
-//I want play button to change to pause too
+
 function pauseTrack() {
   curr_track.pause();
   isPlaying = false;
-  //track-art.classList.toggle('pause'); Check why doesn't work
-  playpause_btn.innerHTML = '<i class="fa fa-play-circle fa-5x"></i>';;
+  playpause_btn.innerHTML = '<i class="fa fa-play-circle fa-5x"></i>';
 }
 
 function nextTrack() {

@@ -1,12 +1,12 @@
 body {
   background-color: lightgreen;
-
   /* Smoothly transition the background color */
   transition: background-color .5s;
+  margin-top: -10px;
 }
 
 .player {
-  height: 95vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -18,23 +18,16 @@ body {
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  margin-top: 25px;
 }
 
 .track-art {
-  /*margin: 25px;
-  height: 250px;
-  width: 250px;
-  background-image: url("https://images.pexels.com/photos/262034/pexels-photo-262034.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
-  background-size: cover;
-  border-radius: 15%;*/
   position: relative;
   display: block;
   margin: 30px auto;
-  width: 160px;
-  height: 160px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
- /* background: black;*/
+  background: black;
   background-image: url("images/ukulele.jpg");
   background-size: cover;
   box-shadow: 0 0 0 10px rgba(255,255,255,0.1);
@@ -59,15 +52,26 @@ body {
 
 
 .now-playing {
-  font-size: 1rem;
+  font-size: 0.8rem;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: rgb(83, 77, 77);
+  font-style: italic;
+  text-transform: lowercase;  
 }
+  
 
 .track-name {
-  font-size: 3rem;
+  font-size: 2rem;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 500;
+  margin-bottom: 10px;  
+  color: black;
+  text-transform:uppercase;
 }
 
 .track-artist {
   font-size: 1.5rem;
+  color: rgb(83, 77, 77);
 }
 
 .buttons {
@@ -79,13 +83,21 @@ body {
 .playpause-track, .prev-track, .next-track {
   padding: 25px;
   opacity: 0.8;
-
-  /* Smoothly transition the opacity */
   transition: opacity .2s;
 }
 
+.playpause-track{
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+.playpause-track.pause{
+animation: pulse 2s linear infinite;
+}
+
 .playpause-track:hover, .prev-track:hover, .next-track:hover {
-  opacity: 1.0;
+opacity: 1.0;
 }
 
 .slider_container {
@@ -102,7 +114,7 @@ body {
   -moz-appearance: none;
   appearance: none;
   height: 5px;
-  background: black;
+  background: rgb(83, 77, 77);
   opacity: 0.7;
   -webkit-transition: .2s;
   transition: opacity .2s;
@@ -113,11 +125,10 @@ body {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  width: 15px;
+  width: 10px;
   height: 15px;
-  background: white;
+  background: black;
   cursor: pointer;
-  border-radius: 50%;
 }
 
 .seek_slider:hover, .volume_slider:hover {
@@ -125,11 +136,12 @@ body {
 }
 
 .seek_slider {
-  width: 60%;
+  width: 100%;
 }
 
 .volume_slider {
   width: 30%;
+  margin: 30px;
 }
 
 .current-time, .total-duration {
@@ -143,3 +155,25 @@ i.fa-volume-down, i.fa-volume-up {
 i.fa-play-circle, i.fa-pause-circle, i.fa-step-forward, i.fa-step-backward {
   cursor: pointer;
 }
+
+@keyframes pulse{
+  0%{
+      box-shadow: 0;
+  }
+  50%{
+      box-shadow: 0 0 0 5px rgba(255,255,255,0.2);
+  }
+  100%{
+      box-shadow: 0 0 0 5px rgba(76, 99, 152, 0.5);
+  }
+}
+
+@keyframes rotate{
+  0%{
+      transform: rotate(0);
+  }
+  100%{
+      transform: rotate(360deg);
+  }
+}
+
